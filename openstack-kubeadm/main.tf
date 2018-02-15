@@ -34,6 +34,12 @@ resource "openstack_blockstorage_volume_v2" "openstack" {
   size        = 5
 }
 
+# attach volume to orbit
+resource "openstack_compute_volume_attach_v2" "attachedtorobit" {
+  instance_id = "${openstack_compute_instance_v2.orbit.id}"
+  volume_id = "${openstack_blockstorage_volume_v2.openstack.id}"
+}
+
 # Necesita el initiator iSCSI
 # resource "openstack_blockstorage_volume_attach_v2" "va_1" {
 #   volume_id = "${openstack_blockstorage_volume_v2.openstack.id}"
