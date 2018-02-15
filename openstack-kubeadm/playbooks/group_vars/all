@@ -1,0 +1,10 @@
+
+# Domain
+domain: "example.com"
+
+# MySQL config
+mysql_server: "node1"
+wordpress_db: "wordpress"
+wordpress_db_user: "wordpress_user"
+wordpress_db_password: "usuario"
+wordpress_db_remote_host: "10.10.6.2"
