@@ -27,7 +27,7 @@ resource "openstack_compute_floatingip_associate_v2" "fip_1" {
   instance_id = "${openstack_compute_instance_v2.orbit.id}"
 }
 
-# new volume, not attached
+# create new volume, not attached
 resource "openstack_blockstorage_volume_v2" "openstack" {
   name        = "openstack"
   description = "Volume create by terraform"
