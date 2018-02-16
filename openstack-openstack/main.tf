@@ -54,7 +54,7 @@ resource "openstack_networking_port_v2" "orbit_port" {
 resource "openstack_compute_instance_v2" "orbit" {
   name            = "orbit"
   image_id        = "f67e34fb-108d-4418-9a49-4a2dbde5a8f1"
-  flavor_id       = "45"
+  flavor_id       = "45" # 4G RAM
   key_pair        = "id_rsa"
   security_groups = ["default", "${openstack_compute_secgroup_v2.openstack-secgroup.name}"]
 
@@ -118,7 +118,7 @@ resource "openstack_networking_port_v2" "mint_port" {
 resource "openstack_compute_instance_v2" "mint" {
   name            = "mint"
   image_id        = "f67e34fb-108d-4418-9a49-4a2dbde5a8f1"
-  flavor_id       = "44"
+  flavor_id       = "44" # 2G RAM
   key_pair        = "id_rsa"
   security_groups = ["default", "${openstack_compute_secgroup_v2.openstack-secgroup.name}"]
 
@@ -141,20 +141,36 @@ resource "openstack_compute_floatingip_associate_v2" "fip_2" {
 
 #
 # # node: boomer
-# resource "openstack_compute_instance_v2" "boomer" {
-#   name            = "boomer"
-#   image_id        = "f67e34fb-108d-4418-9a49-4a2dbde5a8f1"
-#   flavor_id       = "44"
-#   key_pair        = "id_rsa"
-#   security_groups = ["default"]
-#
-#   network {
-#     name = "red de sergio.ferrete"
-#   }
-# }
-#
-# # associate existing float IP
-# resource "openstack_compute_floatingip_associate_v2" "fip_3" {
-#   floating_ip = "172.22.200.207"
-#   instance_id = "${openstack_compute_instance_v2.boomer.id}"
-# }
+
+resource "openstack_networking_port_v2" "boomer_port" {
+  # name               = "port_1"
+  network_id         = "${openstack_networking_network_v2.interna-openstack.id}"
+  admin_state_up     = "true"
+  security_group_ids = ["${openstack_compute_secgroup_v2.openstack-secgroup.id}"]
+
+  fixed_ip {
+    "subnet_id"  = "${openstack_networking_subnet_v2.subnet-openstack.id}"
+    "ip_address" = "192.168.200.5"
+  }
+}
+
+resource "openstack_compute_instance_v2" "boomer" {
+  name            = "boomer"
+  image_id        = "f67e34fb-108d-4418-9a49-4a2dbde5a8f1"
+  flavor_id       = "11" # 512 RAM
+  key_pair        = "id_rsa"
+  security_groups = ["default","${openstack_compute_secgroup_v2.openstack-secgroup.name}"]
+
+  network {
+    name = "red de sergio.ferrete"
+  }
+  network {
+    port = "${openstack_networking_port_v2.boomer_port.id}"
+  }
+}
+
+# boomer float IP
+resource "openstack_compute_floatingip_associate_v2" "fip_3" {
+  floating_ip = "172.22.200.207"
+  instance_id = "${openstack_compute_instance_v2.boomer.id}"
+}
