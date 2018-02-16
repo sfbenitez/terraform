@@ -1,3 +1,3 @@
 venv/*
 openstack-kubeadm/.terraform
-openstack-kubeadm/openstack-auth.sh
+openstack-auth.sh
