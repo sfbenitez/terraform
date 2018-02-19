@@ -1,10 +1,5 @@
 
-# Domain
-domain: "example.com"
-
-# MySQL config
-mysql_server: "node1"
-wordpress_db: "wordpress"
-wordpress_db_user: "wordpress_user"
-wordpress_db_password: "usuario"
-wordpress_db_remote_host: "10.10.6.2"
+k8s_token: 175fe3.88578757ad352a58
+non_root_user: debian
+# Master IP where the clusternodes will join
+master_bind_node_ip: 10.0.0.8

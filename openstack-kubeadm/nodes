@@ -1,6 +1,11 @@
-[masters]
+## kubeadm scenario
+[master]
 orbit ansible_ssh_host=172.22.201.108 ansible_ssh_user=debian ansible_become=true
 
 [clusternodes]
 boomer ansible_ssh_host=172.22.200.207 ansible_ssh_user=debian ansible_become=true
 mint ansible_ssh_host=172.22.201.111 ansible_ssh_user=debian ansible_become=true
+
+## Dockeronly scenario
+#[dockers]
+#pandora ansible_ssh_host=10.0.5.2 ansible_ssh_user=ferrete ansible_become=true

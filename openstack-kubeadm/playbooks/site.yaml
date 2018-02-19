@@ -1,0 +1,17 @@
+---
+# If you only want install rocker, apply only the docker role
+# - hosts: dockers
+#   roles:
+#     - docker
+
+- hosts: master
+  roles:
+    - docker
+    - k8s
+    - k8s-master
+
+- hosts: clusternodes
+  roles:
+    - docker
+    - k8s
+    - k8s-clusternode

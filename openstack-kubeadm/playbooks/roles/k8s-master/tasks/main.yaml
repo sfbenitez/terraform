@@ -1,0 +1,37 @@
+---
+- name: Initializing Master node
+  command: kubeadm init --token={{ k8s_token }}
+
+
+- name: "Setting kubectl for root user: creating $HOME/.kube directory"
+  file:
+    path: /root/.kube
+    state: directory
+    mode: 0755
+
+- name: "Setting kubectl for non-root user: creating $HOME/.kube directory"
+  file:
+    path: /home/debian/.kube
+    owner: debian
+    group: debian
+    state: directory
+    mode: 0755
+
+- name: "Setting kubectl for root user: copying admin.conf to /root/.kube"
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: /root/.kube/config
+    remote_src: True
+    owner: root
+    group: root
+
+- name: "Setting kubectl for non-root user: copying admin.conf to /home/{{non_root_user}}"
+  file:
+    src: /etc/kubernetes/admin.conf
+    dest: /root/.kube/config
+    owner: "{{non_root_user}}"
+    group: "{{non_root_user}}"
+    remote_src: True
+
+- name: Installing Caliclo network pods
+  command: kubectl apply -f "https://docs.projectcalico.org/v3.0/getting-started/kubernetes/installation/hosted/kubeadm/1.7/calico.yaml"

@@ -1,0 +1,3 @@
+---
+- name: Joining node to the cluster
+  shell: kubeadm join --discovery-token-unsafe-skip-ca-verification --ignore-preflight-errors=all --token={{ k8s_token }} {{ master_bind_node_ip }}:6443
