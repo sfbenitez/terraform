@@ -1,17 +1,17 @@
 - name: Ensure mysql server and mysql python client are installed
-  apt: pkg={{ item }} 
+  apt: pkg={{ item }}
   with_items:
     - python-mysqldb
     - mysql-server
 
-- name: Ensure mysql binds to internal interface
-  template: >
-    src=etc/my.cnf 
-    dest=/etc/mysql/my.cnf 
-    owner=root 
-    group=root 
-    mode=0644
-  notify: restart mysql
+# - name: Ensure mysql binds to internal interface
+#   template: >
+#     src=etc/my.cnf
+#     dest=/etc/mysql/my.cnf
+#     owner=root
+#     group=root
+#     mode=0644
+#   notify: restart mysql
 
 # http://dev.mysql.com/doc/refman/5.6/en/default-privileges.html
 - name: update mysql root password for all root accounts
@@ -45,4 +45,3 @@
     - "{{ inventory_hostname_short }}"
     - 127.0.0.1
     - ::1
-
