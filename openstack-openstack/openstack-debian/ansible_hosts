@@ -1,11 +1,11 @@
 [controller-nodes]
-controller ansible_ssh_host=172.22.201.108 ansible_become=true
+controller ansible_ssh_host=192.168.200.10 ansible_become=true
 
 [storage-nodes]
-controller ansible_ssh_host=172.22.201.108 ansible_become=true
+controller ansible_ssh_host=192.168.200.10 ansible_become=true
 
 [compute-nodes]
-compute ansible_ssh_host=172.22.201.111 ansible_become=true
+compute ansible_ssh_host=192.168.200.20 ansible_become=true
 
 [network-nodes]
-controller ansible_ssh_host=172.22.201.108 ansible_become=true
+controller ansible_ssh_host=192.168.200.10 ansible_become=true

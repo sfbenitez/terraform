@@ -66,7 +66,7 @@ resource "openstack_networking_port_v2" "orbit_port_eth0" {
 ## node: orbit, CONTROLLER
 resource "openstack_compute_instance_v2" "orbit" {
   name            = "orbit"
-  image_id        = "0dc7dc47-d3b6-43fa-ba67-0d3242f948f3"
+  image_id        = "f67e34fb-108d-4418-9a49-4a2dbde5a8f1"
   flavor_id       = "45" # 4G RAM
   key_pair        = "id_rsa"
   security_groups = ["default", "${openstack_compute_secgroup_v2.openstack-secgroup.name}"]
@@ -108,7 +108,7 @@ resource "openstack_compute_volume_attach_v2" "attachedtorobit" {
 }
 
 
-# node: mint
+# node: mint, COMPUTE node
 
 resource "openstack_networking_port_v2" "mint_port" {
   # name               = "port_1"
@@ -137,8 +137,8 @@ resource "openstack_networking_port_v2" "mint_port_eth0" {
 
 resource "openstack_compute_instance_v2" "mint" {
   name            = "mint"
-  image_id        = "0dc7dc47-d3b6-43fa-ba67-0d3242f948f3"
-  flavor_id       = "44" # 2G RAM
+  image_id        = "f67e34fb-108d-4418-9a49-4a2dbde5a8f1"
+  flavor_id       = "45" # 8G RAM
   key_pair        = "id_rsa"
   security_groups = ["default", "${openstack_compute_secgroup_v2.openstack-secgroup.name}"]
 
@@ -177,8 +177,8 @@ resource "openstack_networking_port_v2" "boomer_port" {
 
 resource "openstack_compute_instance_v2" "boomer" {
   name            = "boomer"
-  image_id        = "0dc7dc47-d3b6-43fa-ba67-0d3242f948f3"
-  flavor_id       = "11" # 512 RAM
+  image_id        = "f67e34fb-108d-4418-9a49-4a2dbde5a8f1"
+  flavor_id       = "13" # 512 RAM
   key_pair        = "id_rsa"
   security_groups = ["default","${openstack_compute_secgroup_v2.openstack-secgroup.name}"]
 
