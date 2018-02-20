@@ -1,7 +1,7 @@
 # KEYSTONE_3
 k3:
   OS_TOKEN: '012345SECRET99TOKEN012345'
-  OS_URL: 'http://192.168.200.10:35357/v3'
+  OS_URL: 'http://10.0.0.30:35357/v3'
   OS_IDENTITY_API_VERSION: 3
 
 # APT Repository
@@ -23,12 +23,12 @@ controller_ip: 192.168.200.10
 storage_ip: 192.168.200.10
 network_node_ip: 192.168.200.10
 network_node_netmask: 255.255.255.0
-controller_external_ip: 172.22.201.108
-storage_external_ip: 172.22.201.108
-network_node_external_ip: 172.22.201.108
+controller_external_ip: 10.0.0.30
+storage_external_ip: 10.0.0.30
+network_node_external_ip: 10.0.0.30
 network_node_external_netmask: 255.255.0.0
-network_node_external_CIDR: 16
-external_gateway: 172.22.0.1
+network_node_external_CIDR: 24
+external_gateway: 10.0.0.1
 int_net_nic: ens4
 ext_net_nic: ens3
 

@@ -49,6 +49,19 @@ resource "openstack_networking_port_v2" "orbit_port" {
   }
 }
 
+# Network "Red de sergio.ferrete"
+resource "openstack_networking_port_v2" "orbit_port_eth0" {
+  # name               = "port_1"
+  network_id         = "0276f065-e76f-4ad9-9826-5c3f01375492"
+  admin_state_up     = "true"
+  security_group_ids = ["84865709-76a7-4dd8-9807-2d10481e88ea"]
+
+  fixed_ip {
+    "subnet_id"  = "4b96837b-dcd3-4089-aad8-26f6a126c89f"
+    "ip_address" = "10.0.0.30"
+  }
+}
+
 
 ## node: orbit, CONTROLLER
 resource "openstack_compute_instance_v2" "orbit" {
@@ -60,6 +73,7 @@ resource "openstack_compute_instance_v2" "orbit" {
 
   network {
     name = "red de sergio.ferrete"
+    port = "${openstack_networking_port_v2.orbit_port_eth0.id}"
   }
 
   network {
@@ -75,7 +89,7 @@ resource "openstack_compute_instance_v2" "orbit" {
 # associate existing float IP
 resource "openstack_compute_floatingip_associate_v2" "fip_1" {
   floating_ip = "172.22.201.108"
-  # associate new float ip requested to the pool
+  # associate new float ip requested from the pool
   # floating_ip = "${openstack_networking_floatingip_v2.getfip_1.address}"
   instance_id = "${openstack_compute_instance_v2.orbit.id}"
 }
@@ -92,15 +106,8 @@ resource "openstack_compute_volume_attach_v2" "attachedtorobit" {
   instance_id = "${openstack_compute_instance_v2.orbit.id}"
   volume_id = "${openstack_blockstorage_volume_v2.openstack.id}"
 }
-#
-# # Necesita el initiator iSCSI
-# # resource "openstack_blockstorage_volume_attach_v2" "va_1" {
-# #   volume_id = "${openstack_blockstorage_volume_v2.openstack.id}"
-# #   device = "auto"
-# #   host_name = "orbit"
-# #   ip_address = "10.0.0.16"
-# # }
-#
+
+
 # node: mint
 
 resource "openstack_networking_port_v2" "mint_port" {
@@ -115,6 +122,19 @@ resource "openstack_networking_port_v2" "mint_port" {
   }
 }
 
+# Network "Red de sergio.ferrete"
+resource "openstack_networking_port_v2" "mint_port_eth0" {
+  # name               = "port_1"
+  network_id         = "0276f065-e76f-4ad9-9826-5c3f01375492"
+  admin_state_up     = "true"
+  security_group_ids = ["84865709-76a7-4dd8-9807-2d10481e88ea"]
+
+  fixed_ip {
+    "subnet_id"  = "4b96837b-dcd3-4089-aad8-26f6a126c89f"
+    "ip_address" = "10.0.0.31"
+  }
+}
+
 resource "openstack_compute_instance_v2" "mint" {
   name            = "mint"
   image_id        = "0dc7dc47-d3b6-43fa-ba67-0d3242f948f3"
@@ -124,6 +144,7 @@ resource "openstack_compute_instance_v2" "mint" {
 
   network {
     name = "red de sergio.ferrete"
+    port = "${openstack_networking_port_v2.mint_port_eth0.id}"
   }
   network {
     port = "${openstack_networking_port_v2.mint_port.id}"
