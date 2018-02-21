@@ -42,7 +42,9 @@ resource "openstack_networking_port_v2" "orbit_int_port" {
   network_id         = "${openstack_networking_network_v2.interna-openstack.id}"
   admin_state_up     = "true"
   security_group_ids = ["${openstack_compute_secgroup_v2.openstack-secgroup.id}"]
-
+  allowed_address_pairs {
+    ip_address = "10.0.0.0/24"
+  }
   fixed_ip {
     "subnet_id"  = "${openstack_networking_subnet_v2.subnet-openstack.id}"
     "ip_address" = "192.168.200.10"
@@ -56,6 +58,9 @@ resource "openstack_networking_port_v2" "orbit_ext_port" {
   admin_state_up     = "true"
   security_group_ids = ["84865709-76a7-4dd8-9807-2d10481e88ea"]
 
+  allowed_address_pairs {
+    ip_address = "192.168.200.0/24"
+  }
   fixed_ip {
     "subnet_id"  = "4b96837b-dcd3-4089-aad8-26f6a126c89f"
     "ip_address" = "10.0.0.30"
@@ -116,6 +121,9 @@ resource "openstack_networking_port_v2" "mint_int_port" {
   admin_state_up     = "true"
   security_group_ids = ["${openstack_compute_secgroup_v2.openstack-secgroup.id}"]
 
+  allowed_address_pairs {
+    ip_address = "10.0.0.0/24"
+  }
   fixed_ip {
     "subnet_id"  = "${openstack_networking_subnet_v2.subnet-openstack.id}"
     "ip_address" = "192.168.200.20"
@@ -129,6 +137,9 @@ resource "openstack_networking_port_v2" "mint_ext_port" {
   admin_state_up     = "true"
   security_group_ids = ["84865709-76a7-4dd8-9807-2d10481e88ea"]
 
+  allowed_address_pairs {
+    ip_address = "192.168.200.0/24"
+  }
   fixed_ip {
     "subnet_id"  = "4b96837b-dcd3-4089-aad8-26f6a126c89f"
     "ip_address" = "10.0.0.31"
@@ -178,7 +189,9 @@ resource "openstack_networking_port_v2" "boomer_ext_port" {
   network_id         = "0276f065-e76f-4ad9-9826-5c3f01375492"
   admin_state_up     = "true"
   security_group_ids = ["84865709-76a7-4dd8-9807-2d10481e88ea"]
-
+  allowed_address_pairs {
+    ip_address = "192.168.200.0/24"
+  }
   fixed_ip {
     "subnet_id"  = "4b96837b-dcd3-4089-aad8-26f6a126c89f"
     "ip_address" = "10.0.0.32"
@@ -192,6 +205,9 @@ resource "openstack_networking_port_v2" "boomer_int_port" {
   admin_state_up     = "true"
   security_group_ids = ["${openstack_compute_secgroup_v2.openstack-secgroup.id}"]
 
+  allowed_address_pairs {
+    ip_address = "10.0.0.0/24"
+  }
   fixed_ip {
     "subnet_id"  = "${openstack_networking_subnet_v2.subnet-openstack.id}"
     "ip_address" = "192.168.200.5"
