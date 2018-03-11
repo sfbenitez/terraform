@@ -1,0 +1,57 @@
+
+{
+  "clusters": [
+    {
+      "nodes": [
+        {
+          "node": {
+            "hostnames": {
+              "manage": [
+                "trident"
+              ],
+              "storage": [
+                "10.0.0.11"
+              ]
+            },
+            "zone": 1
+          },
+          "devices": [
+            "/dev/vdb"
+          ]
+        },
+        {
+          "node": {
+            "hostnames": {
+              "manage": [
+                "boomer"
+              ],
+              "storage": [
+                "10.0.0.15"
+              ]
+            },
+            "zone": 1
+          },
+          "devices": [
+            "/dev/vdb"
+          ]
+        },
+        {
+          "node": {
+            "hostnames": {
+              "manage": [
+                "mint"
+              ],
+              "storage": [
+                "10.0.0.7"
+              ]
+            },
+            "zone": 1
+          },
+          "devices": [
+            "/dev/vdb"
+          ]
+        }
+      ]
+    }
+  ]
+}

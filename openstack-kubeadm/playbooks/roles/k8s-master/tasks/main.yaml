@@ -1,6 +1,6 @@
 ---
 - name: Initializing Master node
-  command: kubeadm init --token={{ k8s_token }}
+  command: kubeadm init --token={{ k8s_token }} --pod-network-cidr=192.168.0.0/16
 
 
 - name: "Setting kubectl for root user: creating $HOME/.kube directory"
